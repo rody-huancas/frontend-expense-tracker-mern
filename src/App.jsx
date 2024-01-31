@@ -1,3 +1,4 @@
+import { Form } from "./components/Form";
 import { Graph } from "./components/Graph";
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
           <Graph />
 
           {/* Form */}
+          <Form />
         </div>
       </div>
     </div>
