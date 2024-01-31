@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { List } from "./List";
 
 export const Form = () => {
   const { register, handleSubmit, resetField } = useForm();
@@ -42,6 +43,8 @@ export const Form = () => {
             </div>
           </div>
         </form>
+
+        <List />
       </div>
     </>
   );
