@@ -1,3 +1,5 @@
+import { default as api } from "../store/apiSlice";
+
 const obj = [
   {
     type: "Savings",
@@ -17,6 +19,8 @@ const obj = [
 ];
 
 export const Labels = () => {
+  const { data, isFetching, isSuccess, isError } = api.useGetCategoriesQuery();
+  console.log(data);
   return (
     <>
       {obj.map((v, i) => (
