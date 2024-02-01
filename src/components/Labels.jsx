@@ -1,33 +1,18 @@
 import { default as api } from "../store/apiSlice";
 
-const obj = [
-  {
-    type: "Savings",
-    color: "#f9c74f",
-    porcent: 45,
-  },
-  {
-    type: "Invesment",
-    color: "#f9c74f",
-    porcent: 20,
-  },
-  {
-    type: "Expense",
-    color: "rgb(54,162,235)",
-    porcent: 10,
-  },
-];
-
 export const Labels = () => {
-  const { data, isFetching, isSuccess, isError } = api.useGetCategoriesQuery();
-  console.log(data);
-  return (
-    <>
-      {obj.map((v, i) => (
-        <LabelComponent key={i} data={v} />
-      ))}
-    </>
-  );
+  const { data, isFetching, isSuccess, isError } = api.useGetLabelsQuery();
+  let Transactions;
+
+  if (isFetching) {
+    Transactions = <div>Fetching</div>;
+  } else if (isSuccess) {
+    Transactions = data.map((v, i) => <LabelComponent key={i} data={v} />);
+  } else if (isError) {
+    Transactions = <div>Error</div>;
+  }
+
+  return <>{Transactions}</>;
 };
 
 function LabelComponent({ data }) {
