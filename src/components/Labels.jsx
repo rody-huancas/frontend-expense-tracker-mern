@@ -1,3 +1,4 @@
+import { getLabels } from "../helpers/helper";
 import { default as api } from "../store/apiSlice";
 
 export const Labels = () => {
@@ -7,7 +8,9 @@ export const Labels = () => {
   if (isFetching) {
     Transactions = <div>Fetching</div>;
   } else if (isSuccess) {
-    Transactions = data.map((v, i) => <LabelComponent key={i} data={v} />);
+    Transactions = getLabels(data, "type").map((v, i) => (
+      <LabelComponent key={i} data={v} />
+    ));
   } else if (isError) {
     Transactions = <div>Error</div>;
   }
@@ -27,7 +30,7 @@ function LabelComponent({ data }) {
         ></div>
         <h3 className="text-md">{data.type ?? ""}</h3>
       </div>
-      <h3 className="font-bold">{data.porcent ?? 0}%</h3>
+      <h3 className="font-bold">{Math.floor(data.percent) ?? 0}%</h3>
     </div>
   );
 }
